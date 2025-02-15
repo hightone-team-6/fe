@@ -24,6 +24,12 @@ export const Header = () => {
     case "/purchase":
       title = "결제하기";
       break;
+    case "/admin":
+      title = "홈";
+      break;
+    case "/edit":
+      title = "내 카페 수정";
+      break;
     default:
       break;
   }

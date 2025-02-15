@@ -14,34 +14,36 @@ export const LikePage = () => {
     <>
       <Container>
         <PageContent>
-          <LikeSection title="최근 본 장소">
-            <RecentList>
-              {data &&
-                data.map((data, idx) => (
-                  <PlaceCard
-                    key={idx}
-                    imageUrls={data.imageUrls}
-                    title={data.title}
-                    hashTags={data.hashTags}
-                    location={data.location}
-                    description={data.description}
-                    templateId={data.templateId}
-                    locationId={data.locationId}
-                    imageSize={110}
-                  />
-                ))}
-            </RecentList>
-          </LikeSection>
-          <LikeSection title="찜한 장소">
-            <ZzimContent>
-              <QuarterImage images={data && data[0].imageUrls} />
-              <QuarterImage images={data && data[0].imageUrls} />
-              <QuarterImage images={data && data[0].imageUrls} />
-              <AddZzim>
-                <PlusIcon />
-              </AddZzim>
-            </ZzimContent>
-          </LikeSection>
+          <SectionContainer>
+            <LikeSection title="최근 본 장소">
+              <RecentList>
+                {data &&
+                  data.map((data, idx) => (
+                    <PlaceCard
+                      key={idx}
+                      imageUrls={data.imageUrls}
+                      title={data.title}
+                      hashTags={data.hashTags}
+                      location={data.location}
+                      description={data.description}
+                      templateId={data.templateId}
+                      locationId={data.locationId}
+                      imageSize={110}
+                    />
+                  ))}
+              </RecentList>
+            </LikeSection>
+            <LikeSection title="찜한 장소">
+              <ZzimContent>
+                <QuarterImage images={data && data[0].imageUrls} />
+                <QuarterImage images={data && data[0].imageUrls} />
+                <QuarterImage images={data && data[0].imageUrls} />
+                <AddZzim>
+                  <PlusIcon />
+                </AddZzim>
+              </ZzimContent>
+            </LikeSection>
+          </SectionContainer>
         </PageContent>
       </Container>
     </>
@@ -74,4 +76,10 @@ const AddZzim = styled.div`
   aspect-ratio: 1/ 1;
   border-radius: 12px;
   background: #e6e6e6;
+`;
+
+const SectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
