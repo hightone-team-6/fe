@@ -8,9 +8,8 @@ const StyledProvider = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 393px;
-  height: 852px;
-  border: 1px solid red;
+  width: 100vw;
+  height: 100vh;
 `;
 
 interface ProviderProps {
