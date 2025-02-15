@@ -1,6 +1,7 @@
 import { PageContainer } from "@/components/PageContainer";
 import styled from "styled-components";
 import InfinityScrollImageContainer from "@/components/InfinityScrollImageContaienr";
+import { PageContent } from "@/components/PageContent";
 
 /**
  * 검색 페이지
@@ -9,7 +10,9 @@ export const SearchPage = () => {
   return (
     <>
       <Container>
-        <InfinityScrollImageContainer />
+        <PageContent>
+          <InfinityScrollImageContainer />
+        </PageContent>
       </Container>
     </>
   );

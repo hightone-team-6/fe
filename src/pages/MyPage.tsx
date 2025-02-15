@@ -1,4 +1,5 @@
 import { PageContainer } from "@/components/PageContainer";
+import { PageContent } from "@/components/PageContent";
 import { RightArrow } from "@/components/RightArrow";
 import { HStack, VStack } from "@/components/Stack";
 import { Typography } from "@/components/Typography";
@@ -20,60 +21,62 @@ export const MyPage = () => {
   return (
     <>
       <Container>
-        <Profile>
-          <ProfileImg />
-          <VStack $gap={"4px"}>
-            <Typography size="Body" weight={"bold"}>
-              홍길동
-            </Typography>
-            <Membership>등급 혜택 보기</Membership>
-          </VStack>
-        </Profile>
-        <Space />
-        <PointCoupon>
-          <Point>
-            <Typography size="Body" weight={"bold"} color="grey">
-              포인트
-            </Typography>
-            <HStack $justifyContent="space-between" $alignItems="center">
-              <HStack $gap={"5px"}>
-                <Typography size="Body" weight={"bold"}>
-                  666
-                </Typography>
-                <Typography size="Body" weight={"bold"} color="green">
-                  P
-                </Typography>
+        <PageContent>
+          <Profile>
+            <ProfileImg />
+            <VStack $gap={"4px"}>
+              <Typography size="Body" weight={"bold"}>
+                홍길동
+              </Typography>
+              <Membership>등급 혜택 보기</Membership>
+            </VStack>
+          </Profile>
+          <Space />
+          <PointCoupon>
+            <Point>
+              <Typography size="Body" weight={"bold"} color="grey">
+                포인트
+              </Typography>
+              <HStack $justifyContent="space-between" $alignItems="center">
+                <HStack $gap={"5px"}>
+                  <Typography size="Body" weight={"bold"}>
+                    666
+                  </Typography>
+                  <Typography size="Body" weight={"bold"} color="green">
+                    P
+                  </Typography>
+                </HStack>
+                <RightArrow />
               </HStack>
-              <RightArrow />
-            </HStack>
-          </Point>
-          <Coupon>
-            <Typography size="Body" weight={"bold"} color="grey">
-              쿠폰
-            </Typography>
-            <HStack $justifyContent="space-between" $alignItems="center">
-              <HStack $gap={"5px"}>
-                <Typography size="Body" weight={"bold"}>
-                  0
-                </Typography>
-                <Typography size="Body" weight={"bold"} color="green">
-                  개
-                </Typography>
+            </Point>
+            <Coupon>
+              <Typography size="Body" weight={"bold"} color="grey">
+                쿠폰
+              </Typography>
+              <HStack $justifyContent="space-between" $alignItems="center">
+                <HStack $gap={"5px"}>
+                  <Typography size="Body" weight={"bold"}>
+                    0
+                  </Typography>
+                  <Typography size="Body" weight={"bold"} color="green">
+                    개
+                  </Typography>
+                </HStack>
+                <RightArrow />
               </HStack>
-              <RightArrow />
-            </HStack>
-          </Coupon>
-        </PointCoupon>
-        <Space />
-        <ProfileList>
-          {menus.map((menu: string, idx: number) => {
-            return (
-              <ProfileItem key={idx}>
-                <Typography size="Body">{menu}</Typography>
-              </ProfileItem>
-            );
-          })}
-        </ProfileList>
+            </Coupon>
+          </PointCoupon>
+          <Space />
+          <ProfileList>
+            {menus.map((menu: string, idx: number) => {
+              return (
+                <ProfileItem key={idx}>
+                  <Typography size="Body">{menu}</Typography>
+                </ProfileItem>
+              );
+            })}
+          </ProfileList>
+        </PageContent>
       </Container>
     </>
   );

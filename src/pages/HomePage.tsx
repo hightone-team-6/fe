@@ -4,6 +4,7 @@ import PlaceCard from "@/components/PlaceCard";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { PageContent } from "@/components/PageContent";
 
 const Title = styled.span`
   color: #000;
@@ -30,7 +31,7 @@ const Container = styled.div`
   width: 393px;
 `;
 const HeadImage = styled.div<{ $imageUrl: string }>`
-  width: 393px;
+  width: 100%;
   height: 250px;
   flex-shrink: 0;
   background: linear-gradient(
@@ -126,36 +127,38 @@ export const HomePage = () => {
         </Progress>
       </ProgressWrapper>
       <Container>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <Title>지금 인기있는</Title>
-          <CardWrapper>
-            {data?.slice(0, 3).map((v) => (
-              <PlaceCard
-                imageSize={110}
-                key={v.locationId}
-                {...v}
-                onClick={() => {
-                  navigate(`/location/${v.locationId}`);
-                }}
-              />
-            ))}
-          </CardWrapper>
-        </div>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <Title>근처 이벤트 카페</Title>
-          <CardWrapper>
-            {data?.slice(0, 3).map((v) => (
-              <PlaceCard
-                imageSize={110}
-                key={v.locationId}
-                {...v}
-                onClick={() => {
-                  navigate(`/location/${v.locationId}`);
-                }}
-              />
-            ))}
-          </CardWrapper>
-        </div>
+        <PageContent>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <Title>지금 인기있는</Title>
+            <CardWrapper>
+              {data?.slice(0, 3).map((v) => (
+                <PlaceCard
+                  imageSize={110}
+                  key={v.locationId}
+                  {...v}
+                  onClick={() => {
+                    navigate(`/location/${v.locationId}`);
+                  }}
+                />
+              ))}
+            </CardWrapper>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <Title>근처 이벤트 카페</Title>
+            <CardWrapper>
+              {data?.slice(0, 3).map((v) => (
+                <PlaceCard
+                  imageSize={110}
+                  key={v.locationId}
+                  {...v}
+                  onClick={() => {
+                    navigate(`/location/${v.locationId}`);
+                  }}
+                />
+              ))}
+            </CardWrapper>
+          </div>
+        </PageContent>
       </Container>
     </>
   );

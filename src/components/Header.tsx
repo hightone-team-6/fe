@@ -43,5 +43,5 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding: 18px 0;
-  padding-top: 60px;
+  padding-top: 80px;
 `;

@@ -1,6 +1,7 @@
 import useGetLocations from "@/api/hooks/locations/useGetLocations";
 import { LikeSection } from "@/components/LikeSection";
 import { PageContainer } from "@/components/PageContainer";
+import { PageContent } from "@/components/PageContent";
 import PlaceCard from "@/components/PlaceCard";
 import { PlusIcon } from "@/components/PlusIcon";
 import { QuarterImage } from "@/components/QuarterImage";
@@ -12,34 +13,36 @@ export const LikePage = () => {
   return (
     <>
       <Container>
-        <LikeSection title="최근 본 장소">
-          <RecentList>
-            {data &&
-              data.map((data, idx) => (
-                <PlaceCard
-                  key={idx}
-                  imageUrls={data.imageUrls}
-                  title={data.title}
-                  hashTags={data.hashTags}
-                  location={data.location}
-                  description={data.description}
-                  templateId={data.templateId}
-                  locationId={data.locationId}
-                  imageSize={110}
-                />
-              ))}
-          </RecentList>
-        </LikeSection>
-        <LikeSection title="찜한 장소">
-          <ZzimContent>
-            <QuarterImage images={data && data[0].imageUrls} />
-            <QuarterImage images={data && data[0].imageUrls} />
-            <QuarterImage images={data && data[0].imageUrls} />
-            <AddZzim>
-              <PlusIcon />
-            </AddZzim>
-          </ZzimContent>
-        </LikeSection>
+        <PageContent>
+          <LikeSection title="최근 본 장소">
+            <RecentList>
+              {data &&
+                data.map((data, idx) => (
+                  <PlaceCard
+                    key={idx}
+                    imageUrls={data.imageUrls}
+                    title={data.title}
+                    hashTags={data.hashTags}
+                    location={data.location}
+                    description={data.description}
+                    templateId={data.templateId}
+                    locationId={data.locationId}
+                    imageSize={110}
+                  />
+                ))}
+            </RecentList>
+          </LikeSection>
+          <LikeSection title="찜한 장소">
+            <ZzimContent>
+              <QuarterImage images={data && data[0].imageUrls} />
+              <QuarterImage images={data && data[0].imageUrls} />
+              <QuarterImage images={data && data[0].imageUrls} />
+              <AddZzim>
+                <PlusIcon />
+              </AddZzim>
+            </ZzimContent>
+          </LikeSection>
+        </PageContent>
       </Container>
     </>
   );
