@@ -28,9 +28,12 @@ const Selectors = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+
+  position: relative;
 `;
 
 const Selector = styled.div`
+  position: relative;
   padding-left: 14px;
   width: 130px;
   height: 30px;
@@ -55,11 +58,71 @@ const ApplyButton = styled.button`
   font-weight: 400;
 `;
 
+const DropDown = styled.div`
+  width: 130px;
+  top: 30px;
+  position: absolute;
+  left: 0;
+  height: fit-content;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12);
+  transform: translateY(-20px);
+  opacity: 0;
+  animation: slideDown 0.3s ease forwards;
+
+  @keyframes slideDown {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+`;
+
+const DropDownItem = styled.div`
+  padding: 10px 16px;
+  cursor: pointer;
+
+  color: #000;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+const locations = [
+  "서울",
+  "경기",
+  "인천",
+  "강원",
+  "충청",
+  "전라",
+  "경상",
+  "제주",
+] as const;
+
+const styles = [
+  "하늘색",
+  "노랑색",
+  "초록색",
+  "분홍색",
+  "보라색",
+  "빨강색",
+  "파랑색",
+  "검정색",
+  "회색",
+] as const;
+
 const InfinityScrollImageContainer = () => {
-  const { data } = useGetLocations();
+  const [searchValue, setSearchValue] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const { data } = useGetLocations(searchQuery);
   const [displayData, setDisplayData] = useState<Location[]>([]);
   const observerRef = useRef<HTMLDivElement>(null);
   const loadingRef = useRef(false);
+
+  const [dropDown, setDropDown] = useState<"location" | "style" | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -96,17 +159,68 @@ const InfinityScrollImageContainer = () => {
     setDisplayData([...data]);
   }, [data]);
 
-  const [searchValue, setSearchValue] = useState("");
-
   return (
     <Wrapper>
       <Input
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
+        onSearchClick={() => {
+          setDisplayData([]);
+          setSearchQuery(searchValue);
+        }}
       />
       <Selectors>
-        <Selector>지역</Selector>
-        <Selector>스타일</Selector>
+        <Selector
+          onClick={() =>
+            setDropDown((prev) => (prev === "location" ? null : "location"))
+          }
+        >
+          지역
+          {dropDown === "location" && (
+            <DropDown>
+              {locations.map((v) => (
+                <DropDownItem
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSearchValue(v);
+                    setDropDown(null);
+                    setDisplayData([]);
+                    setSearchQuery(v);
+                  }}
+                  key={v}
+                >
+                  {v}
+                </DropDownItem>
+              ))}
+            </DropDown>
+          )}
+        </Selector>
+
+        <Selector
+          onClick={() =>
+            setDropDown((prev) => (prev === "style" ? null : "style"))
+          }
+        >
+          스타일
+          {dropDown === "style" && (
+            <DropDown>
+              {styles.map((v) => (
+                <DropDownItem
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSearchValue(v);
+                    setDropDown(null);
+                    setDisplayData([]);
+                    setSearchQuery(v);
+                  }}
+                  key={v}
+                >
+                  {v}
+                </DropDownItem>
+              ))}
+            </DropDown>
+          )}
+        </Selector>
         <ApplyButton>적용</ApplyButton>
       </Selectors>
       <Container>

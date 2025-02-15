@@ -1,6 +1,5 @@
 import useGetLocations from "@/api/hooks/locations/useGetLocations";
 import FloatButton from "@/components/FloatButton";
-import { PageContainer } from "@/components/PageContainer";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
