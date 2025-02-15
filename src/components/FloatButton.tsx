@@ -14,8 +14,10 @@ const Container = styled.button`
   justify-content: center;
 
   cursor: pointer;
+  z-index: 100;
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface FloatButtonProps extends React.HTMLAttributes<HTMLButtonElement> {}
 
 const FloatButton = ({ ...props }: FloatButtonProps) => {
