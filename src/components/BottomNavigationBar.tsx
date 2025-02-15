@@ -37,6 +37,7 @@ export const BottomNavigationBar = () => {
   const paths = menus.map((menu) => menu.to);
 
   if (!paths.includes(location.pathname)) return;
+  if (location.pathname.includes("/purchase")) return null;
 
   return (
     <>
