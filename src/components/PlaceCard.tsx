@@ -29,6 +29,13 @@ const Title = styled(BaseText)`
 
 const HashTag = styled(BaseText)`
   font-weight: 400;
+
+  display: flex;
+  flex-wrap: wrap;
+  span {
+    white-space: nowrap;
+    padding-right: 3px;
+  }
 `;
 
 interface PlaceCardProps extends Location {
@@ -52,7 +59,11 @@ const PlaceCard = ({
       <Image src={imageUrls[0]} alt={title} size={imageSize} />
       <div>
         <Title>{title}</Title> <br />
-        <HashTag>{hashTags.join(" ")}</HashTag>
+        <HashTag>
+          {hashTags.map((tag, idx) => (
+            <span key={idx}>{tag}</span>
+          ))}
+        </HashTag>
       </div>
     </Container>
   );
