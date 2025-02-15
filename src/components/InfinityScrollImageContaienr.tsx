@@ -20,6 +20,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 16px;
+
+  height: calc(100vh - 65px - 158px);
 `;
 
 const Selectors = styled.div`
