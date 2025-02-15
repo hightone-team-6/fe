@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Typography } from "../components/Typography";
+import { PageContainer } from "@/components/PageContainer";
 
 /**
  * 홈페이지
@@ -17,4 +18,4 @@ export const HomePage = () => {
 /**
  * @todo 페이지 Wrap 컨테이너
  */
-const Container = styled.div``;
+const Container = styled(PageContainer)``;
