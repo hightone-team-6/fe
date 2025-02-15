@@ -3,4 +3,5 @@ export const font = {
   Headline: "20px",
   Body: "16px",
   Caption: "12px",
+  Menu: "10px",
 };
