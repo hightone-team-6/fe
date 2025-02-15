@@ -11,5 +11,6 @@ export const reservationUrl = {
 } as const;
 
 export const locationUrl = {
-  getLocations: () => "/locations",
+  getLocations: (search?: string) =>
+    `/locations?${search ? `search=${search}` : ""}`,
 } as const;

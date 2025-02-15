@@ -11,5 +11,5 @@ export const reservationQueryKeys = {
 } as const;
 
 export const locationQueryKeys = {
-  getLocations: () => ["location", "get", "locations"],
+  getLocations: (search?: string) => ["location", "get", "locations", search],
 } as const;

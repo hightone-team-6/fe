@@ -14,11 +14,12 @@ export interface Location {
 }
 
 const useGetLocations = (
+  search?: string,
   options?: Omit<UseQueryOptions<Location[]>, "queryKey">
 ) => {
   return useQuery({
-    queryKey: locationQueryKeys.getLocations(),
-    queryFn: () => get<Location[]>(locationUrl.getLocations()),
+    queryKey: locationQueryKeys.getLocations(search),
+    queryFn: () => get<Location[]>(locationUrl.getLocations(search)),
     staleTime: minutesToMs(5),
     gcTime: minutesToMs(10),
     ...options,

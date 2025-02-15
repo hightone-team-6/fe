@@ -16,6 +16,7 @@ const SearchIconWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 7px;
+  cursor: pointer;
 `;
 
 const InputValue = styled.input`
@@ -26,13 +27,15 @@ const InputValue = styled.input`
   background: transparent;
 `;
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
+  onSearchClick?: () => void;
+};
 
-const Input = ({ value, onChange }: InputProps) => {
+const Input = ({ value, onChange, onSearchClick }: InputProps) => {
   return (
     <Container>
       <InputValue value={value} onChange={onChange} />
-      <SearchIconWrapper>
+      <SearchIconWrapper onClick={onSearchClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="2"
