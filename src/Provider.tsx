@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 const StyledProvider = styled.div`
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   flex-direction: column;
   width: 393px;
   height: 852px;

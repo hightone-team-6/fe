@@ -4,124 +4,69 @@ import useGetLocations, {
   Location,
 } from "@/api/hooks/locations/useGetLocations";
 import PlaceCard from "@/components/PlaceCard";
+import Input from "@/components/Input";
 
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 11px 44px;
+  gap: 44px 11px;
   max-height: calc(100vh - 160px);
   overflow-y: auto;
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+`;
+
+const Selectors = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+const Selector = styled.div`
+  padding-left: 14px;
+  width: 130px;
+  height: 30px;
+  border-radius: 100px;
+  background: #fff;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+`;
+
+const ApplyButton = styled.button`
+  width: 77px;
+  height: 30px;
+  border-radius: 100px;
+  background: #2b8137;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+`;
+
 const InfinityScrollImageContainer = () => {
-  const mockData: Location[] = [
-    {
-      imageUrls: Array(4).fill(
-        "https://i.namu.wiki/i/5FGUIiyTGl3EkaSlnnRnmoAsPBMkL8w1tVdj5pgDOoydk2T0brSqYsWyLgGqyELwn5oP8HWRhF8A-p8ZyN4FtQ.webp"
-      ),
-      title: "서울 카페",
-      location: "서울특별시 강남구",
-      description: "분위기 좋은 카페",
-      templateId: 1,
-      locationId: 1,
-      hashTags: ["#카페", "#데이트", "#분위기좋은"],
-    },
-    {
-      imageUrls: Array(4).fill(
-        "https://i.namu.wiki/i/5FGUIiyTGl3EkaSlnnRnmoAsPBMkL8w1tVdj5pgDOoydk2T0brSqYsWyLgGqyELwn5oP8HWRhF8A-p8ZyN4FtQ.webp"
-      ),
-      title: "부산 맛집",
-      location: "부산광역시 해운대구",
-      description: "해운대 근처 맛집",
-      templateId: 2,
-      locationId: 2,
-      hashTags: ["#맛집", "#해운대", "#부산여행"],
-    },
-    {
-      imageUrls: Array(4).fill(
-        "https://i.namu.wiki/i/5FGUIiyTGl3EkaSlnnRnmoAsPBMkL8w1tVdj5pgDOoydk2T0brSqYsWyLgGqyELwn5oP8HWRhF8A-p8ZyN4FtQ.webp"
-      ),
-      title: "제주도 명소",
-      location: "제주특별자치도 서귀포시",
-      description: "제주 필수 관광지",
-      templateId: 3,
-      locationId: 3,
-      hashTags: ["#제주도", "#관광", "#여행"],
-    },
-    {
-      imageUrls: Array(4).fill(
-        "https://i.namu.wiki/i/5FGUIiyTGl3EkaSlnnRnmoAsPBMkL8w1tVdj5pgDOoydk2T0brSqYsWyLgGqyELwn5oP8HWRhF8A-p8ZyN4FtQ.webp"
-      ),
-      title: "서울 카페",
-      location: "서울특별시 강남구",
-      description: "분위기 좋은 카페",
-      templateId: 1,
-      locationId: 1,
-      hashTags: ["#카페", "#데이트", "#분위기좋은"],
-    },
-    {
-      imageUrls: Array(4).fill(
-        "https://i.namu.wiki/i/5FGUIiyTGl3EkaSlnnRnmoAsPBMkL8w1tVdj5pgDOoydk2T0brSqYsWyLgGqyELwn5oP8HWRhF8A-p8ZyN4FtQ.webp"
-      ),
-      title: "부산 맛집",
-      location: "부산광역시 해운대구",
-      description: "해운대 근처 맛집",
-      templateId: 2,
-      locationId: 2,
-      hashTags: ["#맛집", "#해운대", "#부산여행"],
-    },
-    {
-      imageUrls: Array(4).fill(
-        "https://i.namu.wiki/i/5FGUIiyTGl3EkaSlnnRnmoAsPBMkL8w1tVdj5pgDOoydk2T0brSqYsWyLgGqyELwn5oP8HWRhF8A-p8ZyN4FtQ.webp"
-      ),
-      title: "제주도 명소",
-      location: "제주특별자치도 서귀포시",
-      description: "제주 필수 관광지",
-      templateId: 3,
-      locationId: 3,
-      hashTags: ["#제주도", "#관광", "#여행"],
-    },
-    {
-      imageUrls: Array(4).fill(
-        "https://i.namu.wiki/i/5FGUIiyTGl3EkaSlnnRnmoAsPBMkL8w1tVdj5pgDOoydk2T0brSqYsWyLgGqyELwn5oP8HWRhF8A-p8ZyN4FtQ.webp"
-      ),
-      title: "서울 카페",
-      location: "서울특별시 강남구",
-      description: "분위기 좋은 카페",
-      templateId: 1,
-      locationId: 1,
-      hashTags: ["#카페", "#데이트", "#분위기좋은"],
-    },
-    {
-      imageUrls: Array(4).fill(
-        "https://i.namu.wiki/i/5FGUIiyTGl3EkaSlnnRnmoAsPBMkL8w1tVdj5pgDOoydk2T0brSqYsWyLgGqyELwn5oP8HWRhF8A-p8ZyN4FtQ.webp"
-      ),
-      title: "부산 맛집",
-      location: "부산광역시 해운대구",
-      description: "해운대 근처 맛집",
-      templateId: 2,
-      locationId: 2,
-      hashTags: ["#맛집", "#해운대", "#부산여행"],
-    },
-  ];
   const { data } = useGetLocations();
   const [displayData, setDisplayData] = useState<Location[]>([]);
-  const [page, setPage] = useState(1);
   const observerRef = useRef<HTMLDivElement>(null);
   const loadingRef = useRef(false);
 
   useEffect(() => {
-    if (!mockData) return;
-    setDisplayData((prev) => [...prev, ...mockData]);
-  }, [mockData]);
-
-  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && !loadingRef.current) {
+        if (entries[0].isIntersecting && !loadingRef.current && data) {
           loadingRef.current = true;
           setTimeout(() => {
-            setPage((prev) => prev + 1);
+            setDisplayData((prev) => {
+              return [...prev, ...data];
+            });
             loadingRef.current = false;
           }, 200);
         }
@@ -138,27 +83,46 @@ const InfinityScrollImageContainer = () => {
         observer.unobserve(observerRef.current);
       }
     };
-  }, []);
+  }, [data]);
+
+  // 초기 데이터 로드
+  useEffect(() => {
+    if (!data || displayData.length > 0) return;
+    setDisplayData([...data]);
+  }, [data]);
+
+  const [searchValue, setSearchValue] = useState("");
 
   return (
-    <Container>
-      {displayData.slice(0, page * mockData?.length!).map((v, index) => (
-        <div
-          key={`${v.locationId}-${index}`}
-          style={{
-            animation: "fadeIn 0.5s ease-in-out",
-          }}
-        >
-          <PlaceCard {...v} />
-        </div>
-      ))}
-      <div ref={observerRef} style={{ height: "100px" }} />
-      <style>
-        {`
+    <Wrapper>
+      <Input
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+      />
+      <Selectors>
+        <Selector>지역</Selector>
+        <Selector>스타일</Selector>
+        <ApplyButton>적용</ApplyButton>
+      </Selectors>
+      <Container>
+        {displayData.map((v, index) => (
+          <div
+            key={`${v.locationId}-${index}`}
+            style={{
+              width: "175px",
+              animation: "fadeIn 0.2s ease-in-out",
+            }}
+          >
+            <PlaceCard {...v} />
+          </div>
+        ))}
+        <div ref={observerRef} style={{ height: "100px" }} />
+        <style>
+          {`
           @keyframes fadeIn {
             from {
               opacity: 0;
-              transform: translateY(20px);
+              transform: translateY(8px);
             }
             to {
               opacity: 1; 
@@ -166,8 +130,9 @@ const InfinityScrollImageContainer = () => {
             }
           }
         `}
-      </style>
-    </Container>
+        </style>
+      </Container>
+    </Wrapper>
   );
 };
 

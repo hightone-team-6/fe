@@ -5,6 +5,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  max-width: 175px;
 `;
 
 const Image = styled.img`
@@ -40,8 +41,10 @@ const PlaceCard = ({
   return (
     <Container>
       <Image src={imageUrls[0]} alt={title} />
-      <Title>{title}</Title>
-      <HashTag>{hashTags.map((v) => `#${v}`).join(" ")}</HashTag>
+      <div>
+        <Title>{title}</Title> <br />
+        <HashTag>{hashTags.map((v) => `#${v}`).join(" ")}</HashTag>
+      </div>
     </Container>
   );
 };
