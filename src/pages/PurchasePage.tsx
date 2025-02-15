@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -213,6 +214,8 @@ const PurchasePage = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState(0);
 
+  const navigate = useNavigate();
+
   return (
     <Container>
       <div style={{ height: "3px" }} />
@@ -302,7 +305,14 @@ const PurchasePage = () => {
       <Agreement text="(필수) 개인정보 수집 · 이용 동의" />
       <Agreement text="(필수) 개인정보 제3자 정보 제공 동의" />
       <Agreement text="(필수) 결제대행 서비스 이용약관 동의" />
-      <Button>결제하기</Button>
+      <Button
+        onClick={() => {
+          alert("결제가 완료 되었습니다");
+          navigate("/");
+        }}
+      >
+        결제하기
+      </Button>
     </Container>
   );
 };

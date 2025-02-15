@@ -93,6 +93,7 @@ const DropDownItem = styled.div`
 
 const locations = [
   "서울",
+  "부산",
   "경기",
   "인천",
   "강원",
