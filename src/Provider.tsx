@@ -10,7 +10,7 @@ const StyledProvider = styled.div`
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 `;
 
 interface ProviderProps {
