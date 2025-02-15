@@ -128,43 +128,46 @@ const ReservationPage = () => {
   return (
     <Container>
       {localReservations?.map((reservation) => (
-        <Card key={reservation.locationId}>
-          <ImageContainer>
-            {fileUrls.map((url) => (
-              <Image src={url} />
-            ))}
-          </ImageContainer>
+        <>
+          <Card key={reservation.locationId}>
+            <ImageContainer>
+              {[...new Set(fileUrls)].map((url) => (
+                <Image src={url} />
+              ))}
+            </ImageContainer>
+            <div style={{ height: "16px" }} />
+            <Title>{reservation.request}</Title>
+            <GetInfo>자세히 보기</GetInfo>
+            <div style={{ height: "16px" }} />
+            <Buttons>
+              <Button
+                onClick={() => {
+                  setLocalReservations((prev) =>
+                    prev.filter(
+                      (item) => item.locationId !== reservation.locationId
+                    )
+                  );
+                }}
+                color="#2B8137"
+              >
+                수락하기
+              </Button>
+              <Button
+                onClick={() => {
+                  setLocalReservations((prev) =>
+                    prev.filter(
+                      (item) => item.locationId !== reservation.locationId
+                    )
+                  );
+                }}
+                color="#F00"
+              >
+                거절하기
+              </Button>
+            </Buttons>
+          </Card>
           <div style={{ height: "16px" }} />
-          <Title>{reservation.request}</Title>
-          <GetInfo>자세히 보기</GetInfo>
-          <div style={{ height: "16px" }} />
-          <Buttons>
-            <Button
-              onClick={() => {
-                setLocalReservations((prev) =>
-                  prev.filter(
-                    (item) => item.locationId !== reservation.locationId
-                  )
-                );
-              }}
-              color="#2B8137"
-            >
-              수락하기
-            </Button>
-            <Button
-              onClick={() => {
-                setLocalReservations((prev) =>
-                  prev.filter(
-                    (item) => item.locationId !== reservation.locationId
-                  )
-                );
-              }}
-              color="#F00"
-            >
-              거절하기
-            </Button>
-          </Buttons>
-        </Card>
+        </>
       ))}
     </Container>
   );
