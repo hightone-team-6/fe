@@ -144,8 +144,6 @@ const Radio = styled.div`
 const Pay = styled.div`
   color: #2b8137;
 
-  /* BodyBold */
-  font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -268,7 +266,7 @@ const PurchasePage = () => {
       <div style={{ height: "36px" }} />
       <Title>결제 금액</Title>
       <div style={{ height: "16px" }} />
-      <Pay>{(500000 - point).toLocaleString()} 원</Pay>
+      <Pay>{(800000 - point).toLocaleString()} 원</Pay>
       <div style={{ height: "24px" }} />
       <Line />
       <div style={{ height: "16px" }} />
