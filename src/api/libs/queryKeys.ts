@@ -8,6 +8,7 @@ export const templateQueryKeys = {
 
 export const reservationQueryKeys = {
   postReservation: () => ["reservation", "post", "reservation"],
+  getReservations: () => ["reservation", "get", "reservations"],
 } as const;
 
 export const locationQueryKeys = {

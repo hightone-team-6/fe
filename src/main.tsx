@@ -15,6 +15,7 @@ import PurchasePage from "./pages/PurchasePage.tsx";
 import { FirstPage } from "./pages/FirstPage.tsx";
 import { AdminPage } from "./pages/AdminPage.tsx";
 import { EditPage } from "./pages/EditPage.tsx";
+import ReservationPage from "./pages/ReserVationPage.tsx";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
@@ -31,6 +32,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/booking" element={<BookingPage />} />
           <Route path="/first" element={<FirstPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin/reservation" element={<ReservationPage />} />
           <Route path="/edit" element={<EditPage />} />
         </Routes>
         <BottomNavigationBar />
