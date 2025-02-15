@@ -24,6 +24,7 @@ const TitleWrapper = styled.div`
   font-weight: 700;
   line-height: normal;
   margin: 3px 0 8px 0;
+  position: relative;
 `;
 
 const FormItem = styled.div`
@@ -171,7 +172,7 @@ const FileUpload = styled.div<{ imageSrc: string | null }>`
 
 const Button = styled.button`
   position: fixed;
-  bottom: 16px;
+  bottom: 50px;
   display: flex;
   width: 361px;
   height: 60px;
@@ -262,18 +263,20 @@ const RegisterPage = () => {
       <FormItem>
         이름
         <Input
-          $width={100}
+          $width={200}
           value={name}
           onChange={(e) => setName(e.target.value)}
+          placeholder="이름을 입력해주세요."
         />
       </FormItem>
       <div style={{ height: "8px" }} />
       <FormItem>
         전화번호
         <Input
-          $width={184}
+          $width={200}
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
+          placeholder="전화번호를 입력해주세요."
         />
       </FormItem>
       <div style={{ height: "16px" }} />
@@ -432,6 +435,7 @@ const RegisterPage = () => {
         $width={361}
         value={request}
         onChange={(e) => setRequest(e.target.value)}
+        placeholder="요구사항을 입력해주세요."
       />
 
       <Button

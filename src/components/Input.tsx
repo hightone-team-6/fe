@@ -25,6 +25,7 @@ const InputValue = styled.input`
   border: none;
   outline: none;
   background: transparent;
+  font-size: 16px;
 `;
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {

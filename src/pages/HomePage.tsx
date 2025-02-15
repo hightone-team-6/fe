@@ -4,7 +4,6 @@ import PlaceCard from "@/components/PlaceCard";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { PageContent } from "@/components/PageContent";
 
 const Title = styled.span`
   color: #000;
@@ -86,7 +85,7 @@ const Dot = styled.div<{ $isActive: boolean }>`
 `;
 
 const imageUrls = [
-  "https://pimg.mk.co.kr/news/cms/202301/20/news-p.v1.20230120.3d2f1ccbb58748f9a0bcd658d76cfb7a.jpg",
+  "https://cdn.discordapp.com/attachments/1339575835459588096/1340409585114284113/5c89c38158fdda87.jpg?ex=67b24134&is=67b0efb4&hm=fe187d8a6c6585f1f0c3edd1ee737664dc09239e733eee61b31f48101226b841&",
   "https://dimg.donga.com/wps/NEWS/IMAGE/2021/11/05/110089905.1.jpg",
   "https://cdn.egn.kr/news/photo/201905/118564_229233_1750.jpg",
 ] as const;
@@ -127,38 +126,36 @@ export const HomePage = () => {
         </Progress>
       </ProgressWrapper>
       <Container>
-        <PageContent>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <Title>지금 인기있는</Title>
-            <CardWrapper>
-              {data?.slice(0, 3).map((v) => (
-                <PlaceCard
-                  imageSize={110}
-                  key={v.locationId}
-                  {...v}
-                  onClick={() => {
-                    navigate(`/location/${v.locationId}`);
-                  }}
-                />
-              ))}
-            </CardWrapper>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <Title>근처 이벤트 카페</Title>
-            <CardWrapper>
-              {data?.slice(0, 3).map((v) => (
-                <PlaceCard
-                  imageSize={110}
-                  key={v.locationId}
-                  {...v}
-                  onClick={() => {
-                    navigate(`/location/${v.locationId}`);
-                  }}
-                />
-              ))}
-            </CardWrapper>
-          </div>
-        </PageContent>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <Title>지금 인기있는</Title>
+          <CardWrapper>
+            {data?.slice(0, 3).map((v) => (
+              <PlaceCard
+                imageSize={110}
+                key={v.locationId}
+                {...v}
+                onClick={() => {
+                  navigate(`/location/${v.locationId}`);
+                }}
+              />
+            ))}
+          </CardWrapper>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <Title>근처 이벤트 카페</Title>
+          <CardWrapper>
+            {data?.slice(0, 3).map((v) => (
+              <PlaceCard
+                imageSize={110}
+                key={v.locationId}
+                {...v}
+                onClick={() => {
+                  navigate(`/location/${v.locationId}`);
+                }}
+              />
+            ))}
+          </CardWrapper>
+        </div>
       </Container>
     </>
   );

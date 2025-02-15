@@ -5,6 +5,7 @@ import { SearchIcon } from "./SearchIcon";
 import { LikeIcon } from "./LikeIcon";
 import { ProfileIcon } from "./ProfileIcon";
 import { Typography } from "./Typography";
+import { EditIcon } from "./EditIcon";
 
 /**
  * 하부 네비게이션 바
@@ -34,6 +35,45 @@ export const BottomNavigationBar = () => {
     },
   ];
 
+  const adminMenu = [
+    {
+      title: "홈",
+      to: "/admin",
+      icon: <HomeIcon active={location.pathname === "/admin"} />,
+    },
+    {
+      title: "수정",
+      to: "/edit",
+      icon: <EditIcon active={location.pathname === "/edit"} />,
+    },
+    {
+      title: "내 정보",
+      to: "/admin/my",
+      icon: <ProfileIcon active={location.pathname === "/admin/my"} />,
+    },
+  ];
+
+  const adminPaths = adminMenu.map((menu) => menu.to);
+
+  if (adminPaths.includes(location.pathname))
+    return (
+      <>
+        <Container>
+          {adminMenu.map((menu, idx) => (
+            <NavigationButton key={idx} to={menu.to}>
+              {menu.icon}
+              <Typography
+                size="Caption"
+                color={location.pathname === menu.to ? "green" : "grey"}
+              >
+                {menu.title}
+              </Typography>
+            </NavigationButton>
+          ))}
+        </Container>
+      </>
+    );
+
   const paths = menus.map((menu) => menu.to);
 
   if (!paths.includes(location.pathname)) return;
@@ -43,11 +83,7 @@ export const BottomNavigationBar = () => {
     <>
       <Container>
         {menus.map((menu, idx) => (
-          <NavigationButton
-            key={idx}
-            to={menu.to}
-            state={{ prevPath: location.pathname }}
-          >
+          <NavigationButton key={idx} to={menu.to}>
             {menu.icon}
             <Typography
               size="Caption"
