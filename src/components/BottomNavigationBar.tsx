@@ -34,13 +34,20 @@ export const BottomNavigationBar = () => {
     },
   ];
 
+  const paths = menus.map((menu) => menu.to);
+
+  if (!paths.includes(location.pathname)) return;
   if (location.pathname.includes("/purchase")) return null;
 
   return (
     <>
       <Container>
         {menus.map((menu, idx) => (
-          <NavigationButton key={idx} to={menu.to}>
+          <NavigationButton
+            key={idx}
+            to={menu.to}
+            state={{ prevPath: location.pathname }}
+          >
             {menu.icon}
             <Typography
               size="Caption"
@@ -62,6 +69,8 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  bottom: 0;
 `;
 
 const NavigationButton = styled(Link)`
