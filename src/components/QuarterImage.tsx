@@ -14,15 +14,16 @@ const Grid = styled.div`
 `;
 
 interface QuarterImageProps {
-  images: [string, string, string, string];
+  images?: string[];
 }
 
 export const QuarterImage = ({ images }: QuarterImageProps) => {
   return (
     <Grid>
-      {images.map((image) => (
-        <img width={82} height={82} src={image} alt="quarter" />
-      ))}
+      {images &&
+        images.map((image) => (
+          <img width={82} height={82} src={image} alt="quarter" />
+        ))}
     </Grid>
   );
 };
