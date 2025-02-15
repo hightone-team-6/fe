@@ -9,11 +9,13 @@ import { LikePage } from "./pages/LikePage.tsx";
 import { BottomNavigationBar } from "./components/BottomNavigationBar.tsx";
 import { LocationPage } from "./pages/LocationPage.tsx";
 import { BookingPage } from "./pages/BookingPage.tsx";
+import { Header } from "./components/Header.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Provider>
+        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/my" element={<MyPage />} />
