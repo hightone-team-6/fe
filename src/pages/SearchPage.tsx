@@ -1,5 +1,12 @@
 import { PageContainer } from "@/components/PageContainer";
 import styled from "styled-components";
+import InfinityScrollImageContainer from "@/components/InfinityScrollImageContaienr";
+
+const Spacer = styled.div`
+  height: 160px;
+  width: 100%;
+  background-color: pink;
+`;
 
 /**
  * 검색 페이지
@@ -7,7 +14,10 @@ import styled from "styled-components";
 export const SearchPage = () => {
   return (
     <>
-      <Container></Container>
+      <Container>
+        <Spacer />
+        <InfinityScrollImageContainer />
+      </Container>
     </>
   );
 };
