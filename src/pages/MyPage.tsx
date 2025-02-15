@@ -1,13 +1,80 @@
 import { PageContainer } from "@/components/PageContainer";
+import { RightArrow } from "@/components/RightArrow";
+import { HStack, VStack } from "@/components/Stack";
+import { Typography } from "@/components/Typography";
 import styled from "styled-components";
 
 /**
  * 마이페이지
  */
 export const MyPage = () => {
+  const menus = [
+    "예약 내역",
+    "문의하기",
+    "문의 내역",
+    "회원 정보 수정",
+    "회원 탈퇴",
+    "설정",
+  ];
+
   return (
     <>
-      <Container></Container>
+      <Container>
+        <Profile>
+          <ProfileImg />
+          <VStack $gap={"4px"}>
+            <Typography size="Body" weight={"bold"}>
+              홍길동
+            </Typography>
+            <Membership>등급 혜택 보기</Membership>
+          </VStack>
+        </Profile>
+        <Space />
+        <PointCoupon>
+          <Point>
+            <Typography size="Body" weight={"bold"} color="grey">
+              포인트
+            </Typography>
+            <HStack $justifyContent="space-between" $alignItems="center">
+              <HStack $gap={"5px"}>
+                <Typography size="Body" weight={"bold"}>
+                  666
+                </Typography>
+                <Typography size="Body" weight={"bold"} color="green">
+                  P
+                </Typography>
+              </HStack>
+              <RightArrow />
+            </HStack>
+          </Point>
+          <Coupon>
+            <Typography size="Body" weight={"bold"} color="grey">
+              쿠폰
+            </Typography>
+            <HStack $justifyContent="space-between" $alignItems="center">
+              <HStack $gap={"5px"}>
+                <Typography size="Body" weight={"bold"}>
+                  0
+                </Typography>
+                <Typography size="Body" weight={"bold"} color="green">
+                  개
+                </Typography>
+              </HStack>
+              <RightArrow />
+            </HStack>
+          </Coupon>
+        </PointCoupon>
+        <Space />
+        <ProfileList>
+          {menus.map((menu: string, idx: number) => {
+            return (
+              <ProfileItem key={idx}>
+                <Typography size="Body">{menu}</Typography>
+              </ProfileItem>
+            );
+          })}
+        </ProfileList>
+      </Container>
     </>
   );
 };
@@ -15,4 +82,60 @@ export const MyPage = () => {
 /**
  * @todo 페이지 Wrap 컨테이너
  */
-const Container = styled(PageContainer)``;
+const Container = styled(PageContainer)`
+  display: flex !important;
+  flex-direction: column;
+`;
+
+const Space = styled.div`
+  margin: 10px;
+`;
+
+const Profile = styled.div`
+  width: 100%;
+  padding: 12px 17px;
+  display: flex;
+  gap: 16px;
+`;
+
+const ProfileImg = styled.div`
+  width: 56px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: #aaa;
+`;
+
+const Membership = styled.p`
+  font-size: 14px;
+`;
+
+const ProfileList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ProfileItem = styled.li`
+  display: flex;
+  padding: 10px 16px;
+`;
+
+const PointCoupon = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 16px;
+`;
+
+const Point = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px 15px;
+  gap: 3px;
+`;
+
+const Coupon = styled(Point)``;
