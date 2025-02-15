@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const axiosInstance = () => {
   const instance = axios.create({
-    baseURL: "https", // TODO: url 설정
+    baseURL: "https://highthon-api.previousw.dev",
     headers: {
       "Content-Type": "application/json",
     },
