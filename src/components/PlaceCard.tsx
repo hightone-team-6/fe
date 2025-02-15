@@ -6,6 +6,7 @@ const Container = styled.div`
   flex-direction: column;
   gap: 8px;
   max-width: 175px;
+  cursor: pointer;
 `;
 
 const Image = styled.img<{ size: number }>`
