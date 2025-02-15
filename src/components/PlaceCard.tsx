@@ -33,6 +33,7 @@ const HashTag = styled(BaseText)`
 
 interface PlaceCardProps extends Location {
   imageSize?: number;
+  onClick?: () => void;
 }
 
 const PlaceCard = ({
@@ -44,9 +45,10 @@ const PlaceCard = ({
   locationId,
   hashTags,
   imageSize = 175,
+  onClick,
 }: PlaceCardProps) => {
   return (
-    <Container>
+    <Container onClick={onClick}>
       <Image src={imageUrls[0]} alt={title} size={imageSize} />
       <div>
         <Title>{title}</Title> <br />

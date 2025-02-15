@@ -21,7 +21,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/my" element={<MyPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/like" element={<LikePage />} />
-          <Route path="/location" element={<LocationPage />} />
+          <Route path="/location/:locationId" element={<LocationPage />} />
           <Route path="/booking" element={<BookingPage />} />
         </Routes>
         <BottomNavigationBar />

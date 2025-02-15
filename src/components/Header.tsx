@@ -25,6 +25,8 @@ export const Header = () => {
       break;
   }
 
+  if (location.pathname.includes("/location")) return;
+
   return (
     <>
       <Container>

@@ -5,6 +5,7 @@ import useGetLocations, {
 } from "@/api/hooks/locations/useGetLocations";
 import PlaceCard from "@/components/PlaceCard";
 import Input from "@/components/Input";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: grid;
@@ -85,6 +86,8 @@ const InfinityScrollImageContainer = () => {
     };
   }, [data]);
 
+  const navigate = useNavigate();
+
   // 초기 데이터 로드
   useEffect(() => {
     if (!data || displayData.length > 0) return;
@@ -113,7 +116,12 @@ const InfinityScrollImageContainer = () => {
               animation: "fadeIn 0.2s ease-in-out",
             }}
           >
-            <PlaceCard {...v} />
+            <PlaceCard
+              {...v}
+              onClick={() => {
+                navigate(`/location/${v.locationId}`);
+              }}
+            />
           </div>
         ))}
         <div ref={observerRef} style={{ height: "100px" }} />

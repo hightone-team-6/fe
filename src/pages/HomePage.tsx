@@ -3,6 +3,7 @@ import useGetLocations from "@/api/hooks/locations/useGetLocations";
 import PlaceCard from "@/components/PlaceCard";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Title = styled.span`
   color: #000;
@@ -26,6 +27,7 @@ const Container = styled.div`
   gap: 50px;
   position: relative;
   height: 100vh;
+  width: 393px;
 `;
 const HeadImage = styled.div<{ $imageUrl: string }>`
   width: 393px;
@@ -104,6 +106,8 @@ export const HomePage = () => {
     return () => clearInterval(interval);
   }, [data]);
 
+  const navigate = useNavigate();
+
   return (
     <>
       <HeadImage
@@ -126,7 +130,14 @@ export const HomePage = () => {
           <Title>지금 인기있는</Title>
           <CardWrapper>
             {data?.slice(0, 3).map((v) => (
-              <PlaceCard imageSize={110} key={v.locationId} {...v} />
+              <PlaceCard
+                imageSize={110}
+                key={v.locationId}
+                {...v}
+                onClick={() => {
+                  navigate(`/location/${v.locationId}`);
+                }}
+              />
             ))}
           </CardWrapper>
         </div>
@@ -134,7 +145,14 @@ export const HomePage = () => {
           <Title>근처 이벤트 카페</Title>
           <CardWrapper>
             {data?.slice(0, 3).map((v) => (
-              <PlaceCard imageSize={110} key={v.locationId} {...v} />
+              <PlaceCard
+                imageSize={110}
+                key={v.locationId}
+                {...v}
+                onClick={() => {
+                  navigate(`/location/${v.locationId}`);
+                }}
+              />
             ))}
           </CardWrapper>
         </div>
