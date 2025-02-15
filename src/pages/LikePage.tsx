@@ -1,3 +1,4 @@
+import { PageContainer } from "@/components/PageContainer";
 import styled from "styled-components";
 
 export const LikePage = () => {
@@ -11,4 +12,4 @@ export const LikePage = () => {
 /**
  * @todo 페이지 Wrap 컨테이너
  */
-const Container = styled.div``;
+const Container = styled(PageContainer)``;
