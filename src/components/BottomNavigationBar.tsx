@@ -11,4 +11,8 @@ export const BottomNavigationBar = () => {
   );
 };
 
-const Container = styled.div``;
+const Container = styled.div`
+  width: 100%;
+  height: 50px;
+  border-top: 1px solid #aaa;
+`;
