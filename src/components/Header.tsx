@@ -25,6 +25,10 @@ export const Header = () => {
       break;
   }
 
+  if (location.pathname.includes("/register")) {
+    title = "예약하기";
+  }
+
   if (location.pathname.includes("/location")) return;
 
   return (

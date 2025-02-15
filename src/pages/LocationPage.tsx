@@ -2,7 +2,7 @@ import useGetLocations from "@/api/hooks/locations/useGetLocations";
 import FloatButton from "@/components/FloatButton";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const HeadImage = styled.div<{ $imageUrl: string }>`
@@ -191,6 +191,8 @@ export const LocationPage = () => {
     return () => clearInterval(interval);
   }, [location]);
 
+  const navigate = useNavigate();
+
   return (
     <>
       <FloatButton
@@ -239,7 +241,13 @@ export const LocationPage = () => {
           </ImageWrapper>
         </ImageContainer>
 
-        <Button>예약하기</Button>
+        <Button
+          onClick={() => {
+            navigate(`/register/${locationId}`);
+          }}
+        >
+          예약하기
+        </Button>
       </Container>
     </>
   );

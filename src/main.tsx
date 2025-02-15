@@ -10,6 +10,7 @@ import { BottomNavigationBar } from "./components/BottomNavigationBar.tsx";
 import { LocationPage } from "./pages/LocationPage.tsx";
 import { BookingPage } from "./pages/BookingPage.tsx";
 import { Header } from "./components/Header.tsx";
+import RegisterPage from "./pages/RegisterPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -22,6 +23,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/search" element={<SearchPage />} />
           <Route path="/like" element={<LikePage />} />
           <Route path="/location/:locationId" element={<LocationPage />} />
+          <Route path="/register/:locationId" element={<RegisterPage />} />
           <Route path="/booking" element={<BookingPage />} />
         </Routes>
         <BottomNavigationBar />
