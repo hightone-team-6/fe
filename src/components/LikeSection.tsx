@@ -12,7 +12,9 @@ export const LikeSection = ({ children, title }: LikeSectionProps) => {
     <>
       <Container>
         <Title>
-          <Typography size="Body">{title}</Typography>
+          <Typography size="Body" weight={"bold"}>
+            {title}
+          </Typography>
         </Title>
         {children}
       </Container>
@@ -28,4 +30,5 @@ const Container = styled.section`
 
 const Title = styled.div`
   padding: 10px 0;
+  padding-top: 0;
 `;
