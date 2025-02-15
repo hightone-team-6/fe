@@ -61,7 +61,7 @@ const GetInfo = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-top: 4px;
+  margin-top: 4çpx;
 `;
 
 const Buttons = styled.div`
