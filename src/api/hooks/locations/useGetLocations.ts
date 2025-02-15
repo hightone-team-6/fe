@@ -10,6 +10,7 @@ export interface Location {
   description: string;
   templateId: number;
   locationId: number;
+  hashTags: string[];
 }
 
 const useGetLocations = (
