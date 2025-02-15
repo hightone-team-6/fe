@@ -55,7 +55,10 @@ export const BottomNavigationBar = () => {
 
   const adminPaths = adminMenu.map((menu) => menu.to);
 
-  if (adminPaths.includes(location.pathname))
+  if (
+    adminPaths.includes(location.pathname) ||
+    location.pathname === "/admin/reservation"
+  )
     return (
       <>
         <Container>

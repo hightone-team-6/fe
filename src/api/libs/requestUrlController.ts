@@ -8,6 +8,7 @@ export const templateUrl = {
 
 export const reservationUrl = {
   postReservation: () => "/reservations",
+  getReservations: () => "/reservations",
 } as const;
 
 export const locationUrl = {

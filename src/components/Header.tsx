@@ -27,6 +27,9 @@ export const Header = () => {
     case "/admin":
       title = "홈";
       break;
+    case "/admin/reservation":
+      title = "예약 신청 목록";
+      break;
     case "/edit":
       title = "내 카페 수정";
       break;
