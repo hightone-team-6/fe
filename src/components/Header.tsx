@@ -21,6 +21,9 @@ export const Header = () => {
     case "/my":
       title = "마이페이지";
       break;
+    case "/purchase":
+      title = "결제하기";
+      break;
     default:
       break;
   }

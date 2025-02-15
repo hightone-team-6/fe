@@ -33,6 +33,9 @@ export const BottomNavigationBar = () => {
       icon: <ProfileIcon active={location.pathname === "/my"} />,
     },
   ];
+
+  if (location.pathname.includes("/purchase")) return null;
+
   return (
     <>
       <Container>

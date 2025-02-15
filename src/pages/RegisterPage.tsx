@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import useGetLocations from "@/api/hooks/locations/useGetLocations";
+import usePostReservation from "@/api/hooks/reservations/usePostReservation";
+import { useEffect, useMemo, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
   width: 393px;
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   padding: 0 16px;
 `;
@@ -39,7 +41,6 @@ const FormItem = styled.div`
   font-weight: 400;
   line-height: normal;
 `;
-
 const Input = styled.input<{ $width: number }>`
   outline: none;
   border: none;
@@ -55,9 +56,28 @@ const Input = styled.input<{ $width: number }>`
   line-height: normal;
 `;
 
+const TextArea = styled.textarea<{ $width: number }>`
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  background: #d9d9d9;
+  padding: 12px 16px;
+  width: ${({ $width }) => $width}px;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  height: 185px;
+  line-height: normal;
+  resize: none;
+  margin-bottom: 72px;
+`;
+
+const PDFImage =
+  "https://blog.kakaocdn.net/dn/blHjj9/btrWKRyrEZr/cv1ixGSaVFIlkB7SO3UhN0/img.jpg";
+
 const DatePicker = styled.div`
   width: 250px;
-  height: 202px;
   border-radius: 12px;
   background: #fff;
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
@@ -66,14 +86,15 @@ const DatePicker = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  padding: 14px 16px 0 16px;
+  padding: 14px 16px 8px 16px;
+  margin-right: auto;
 `;
 
 const Dates = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+  gap: 6px;
   justify-content: center;
   align-items: center;
 `;
@@ -129,7 +150,46 @@ const DateComponent = styled.div<{
   justify-content: center;
 `;
 
+const FileUploadWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 377px;
+  overflow-x: auto;
+`;
+
+const FileUpload = styled.div<{ imageSrc: string | null }>`
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: ${({ imageSrc }) => (imageSrc ? `url(${imageSrc})` : "#D9D9D9")};
+  background-size: cover;
+  background-position: center;
+`;
+
+const Button = styled.button`
+  position: fixed;
+  bottom: 16px;
+  display: flex;
+  width: 361px;
+  height: 60px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 300px;
+  background: #2b8137;
+
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 700;
+`;
+
 const RegisterPage = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const initialMonth = new Date().getMonth() + 1;
@@ -137,6 +197,10 @@ const RegisterPage = () => {
   const [selectedMonth, setSelectedMonth] = useState<number>(initialMonth);
   const [selectedDate, setSelectedDate] = useState<number[]>([]);
 
+  const [request, setRequest] = useState("");
+  const [file, setFile] = useState<
+    [File | null, File | null, File | null, File | null]
+  >([null, null, null, null]);
   const [dates, setDates] = useState<
     {
       date: number;
@@ -165,16 +229,31 @@ const RegisterPage = () => {
       })
     );
 
-    const nextMonthDates = Array.from(
-      { length: 35 - thisMonthFirstDay - thisMonthLastDate },
-      (_, i) => ({
-        date: i + 1,
-        isActive: false,
-      })
-    );
+    const totalDays = thisMonthFirstDay + thisMonthLastDate;
+    const remainingDays = totalDays > 35 ? 42 - totalDays : 35 - totalDays;
+
+    const nextMonthDates = Array.from({ length: remainingDays }, (_, i) => ({
+      date: i + 1,
+      isActive: false,
+    }));
 
     setDates([...lastMonthDates, ...thisMonthDates, ...nextMonthDates]);
   }, [selectedMonth]);
+
+  const { mutate: postReservation } = usePostReservation({
+    onSuccess: () => {
+      navigate("/purchase");
+    },
+    onError: () => {
+      alert("예약에 실패했습니다.");
+    },
+  });
+
+  const locationId = useLocation().pathname.split("/")[2];
+  const { data: location } = useGetLocations();
+  const currentLocation = location?.find(
+    (l) => l.locationId === Number(locationId)
+  );
 
   return (
     <Container>
@@ -296,6 +375,80 @@ const RegisterPage = () => {
           ))}
         </Dates>
       </DatePicker>
+
+      <div style={{ height: "16px" }} />
+      <TitleWrapper>파일 업로드</TitleWrapper>
+
+      <FileUploadWrapper>
+        {useMemo(
+          () =>
+            file.map((f, index) => (
+              <div key={index} style={{ position: "relative" }}>
+                <FileUpload
+                  imageSrc={
+                    f?.type?.includes("pdf")
+                      ? PDFImage
+                      : f
+                      ? URL.createObjectURL(f)
+                      : null
+                  }
+                />
+                <input
+                  type="file"
+                  accept="image/*,application/pdf"
+                  onChange={(e) => {
+                    const newFile = e.target.files?.[0] || null;
+                    setFile((prev) => {
+                      const newFiles = [...prev];
+                      newFiles[index] = newFile;
+                      return newFiles as [
+                        File | null,
+                        File | null,
+                        File | null,
+                        File | null
+                      ];
+                    });
+                  }}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    opacity: 0,
+                    cursor: "pointer",
+                  }}
+                />
+              </div>
+            )),
+          [file]
+        )}
+      </FileUploadWrapper>
+
+      <div style={{ height: "16px" }} />
+
+      <TitleWrapper>요청사항</TitleWrapper>
+      <TextArea
+        $width={361}
+        value={request}
+        onChange={(e) => setRequest(e.target.value)}
+      />
+
+      <Button
+        onClick={() => {
+          postReservation({
+            userName: name,
+            userPhone: phone,
+            dates: selectedDate,
+            month: selectedMonth,
+            file: file.filter((f) => f !== null),
+            request: request,
+            locationId: currentLocation?.locationId ?? 0,
+          });
+        }}
+      >
+        결제하기
+      </Button>
     </Container>
   );
 };
