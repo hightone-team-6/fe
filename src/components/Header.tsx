@@ -1,11 +1,37 @@
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { Typography } from "./Typography";
+import { LeftArrowIcon } from "./LeftArrowIcon";
 
 export const Header = () => {
   const location = useLocation();
 
-  const banPathName = ["/", "/location"];
+  const includeLeftArrow = ["/register", "/purchase"];
+
+  if (
+    includeLeftArrow.includes(location.pathname) ||
+    location.pathname.includes("/register")
+  ) {
+    let title = "";
+
+    if (location.pathname.includes("/register")) title = "예약하기";
+    else title = "결제하기";
+
+    return (
+      <>
+        <Container>
+          <PrevButton>
+            <LeftArrowIcon />
+          </PrevButton>
+          <Typography size="Headline" weight={"bold"}>
+            {title}
+          </Typography>
+        </Container>
+      </>
+    );
+  }
+
+  const banPathName = ["/", "/location", "/first"];
 
   if (banPathName.includes(location.pathname)) return;
 
@@ -57,4 +83,10 @@ const Container = styled.div`
   align-items: center;
   padding: 18px 0;
   padding-top: 80px;
+  position: relative;
+`;
+
+const PrevButton = styled.div`
+  position: absolute;
+  left: 16px;
 `;

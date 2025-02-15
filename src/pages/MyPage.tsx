@@ -23,10 +23,10 @@ export const MyPage = () => {
       <Container>
         <PageContent>
           <Profile>
-            <ProfileImg />
+            <ProfileImg src="https://cdn.discordapp.com/attachments/1339575835459588096/1340428426846408754/Rectangle_85.png?ex=67b252c0&is=67b10140&hm=d9b1cded6b9af9aee0bbdfc1d9b905cc761131fb1d82675aecd2551868ae997d&" />
             <VStack $gap={"4px"}>
               <Typography size="Body" weight={"bold"}>
-                홍길동
+                김예은
               </Typography>
               <Membership>등급 혜택 보기</Membership>
             </VStack>
@@ -101,11 +101,10 @@ const Profile = styled.div`
   gap: 16px;
 `;
 
-const ProfileImg = styled.div`
+const ProfileImg = styled.img`
   width: 56px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background: #aaa;
 `;
 
 const Membership = styled.p`
