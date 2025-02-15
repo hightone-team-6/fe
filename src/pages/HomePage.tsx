@@ -86,8 +86,8 @@ const Dot = styled.div<{ $isActive: boolean }>`
 
 const imageUrls = [
   "https://cdn.discordapp.com/attachments/1339575835459588096/1340409585114284113/5c89c38158fdda87.jpg?ex=67b24134&is=67b0efb4&hm=fe187d8a6c6585f1f0c3edd1ee737664dc09239e733eee61b31f48101226b841&",
-  "https://dimg.donga.com/wps/NEWS/IMAGE/2021/11/05/110089905.1.jpg",
-  "https://cdn.egn.kr/news/photo/201905/118564_229233_1750.jpg",
+  "https://cdn.discordapp.com/attachments/1339575835459588096/1340411040176930826/2eff2027b10f42f6.jpg?ex=67b2428f&is=67b0f10f&hm=794519e9571ca5e2e795214fab5547b5bc266a00d614191cb0a529fd5d2990d1&",
+  "https://cdn.discordapp.com/attachments/1339575835459588096/1340412242109272125/4e9c77eeb78445fa.jpg?ex=67b243ae&is=67b0f22e&hm=9085e700cf9b2719b81a9cba2e62564ea3e5e7941703d76060580ccc8cba2272&",
 ] as const;
 
 /**
