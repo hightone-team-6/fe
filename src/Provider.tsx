@@ -1,6 +1,16 @@
 import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import GlobalStyle from "./styles/globalStyle";
+import styled from "styled-components";
+
+const StyledProvider = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 393px;
+  height: 852px;
+  border: 1px solid red;
+`;
 
 interface ProviderProps {
   children: React.ReactNode;
@@ -18,7 +28,10 @@ const queryClient = new QueryClient({
 const Provider = ({ children }: ProviderProps) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <StyledProvider>{children}</StyledProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 };
