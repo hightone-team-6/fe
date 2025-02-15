@@ -20,7 +20,7 @@ const BaseStack = styled.div<StackProps>`
   ${({ $flex }) => ($flex ? `flex: ${$flex}` : "")};
   ${({ $padding }) => ($padding ? `padding: ${$padding}` : "")};
   ${({ $background, theme }) =>
-    $background ? `background: ${theme.light.color[$background]}` : ""};
+    $background ? `background: ${theme.color[$background]}` : ""};
 `;
 
 export const HStack = styled(BaseStack)``;

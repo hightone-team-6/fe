@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Typography } from "../components/Typography";
 
 /**
  * 홈페이지
@@ -6,7 +7,9 @@ import styled from "styled-components";
 export const HomePage = () => {
   return (
     <>
-      <Container></Container>
+      <Container>
+        <Typography size="Title">Home</Typography>
+      </Container>
     </>
   );
 };
